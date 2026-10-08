@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Begin Your Journey | Registration</title>
+    <!-- Google Fonts for premium typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Ambient glowing background blobs -->
+    <div class="ambient-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="app-wrapper">
+        <div class="card-container">
+            
+            <!-- Left Panel: Inspirational content -->
+            <div class="info-panel">
+                <div class="info-header">
+                    <div class="logo">
+                        <i data-lucide="sparkles" class="logo-icon"></i>
+                        <span>Aura</span>
+                    </div>
+                </div>
+                <div class="info-content">
+                    <h1>Embrace your <br><span class="gradient-text">potential</span>.</h1>
+                    <p class="quote">"The future belongs to those who believe in the beauty of their dreams."</p>
+                    <p class="quote-author">— Eleanor Roosevelt</p>
+                </div>
+                <div class="info-footer">
+                    <span class="footer-note">Every step forward is progress.</span>
+                </div>
+            </div>
+
+            <!-- Right Panel: Sleek registration form -->
+            <div class="form-panel">
+                <div class="form-header">
+                    <h2>Create Account</h2>
+                    <p class="subtitle">Join us and start your custom journey today.</p>
+                </div>
+
+                <form id="myForm" novalidate>
+                    
+                    <!-- Full Name Field -->
+                    <div class="input-group">
+                        <i data-lucide="user" class="input-icon"></i>
+                        <input type="text" id="name" placeholder=" " required autocomplete="name">
+                        <label for="name">Full Name</label>
+                        <div class="status-indicator"></div>
+                        <span id="nameError" class="error-msg"></span>
+                    </div>
+
+                    <!-- Email Field -->
+                    <div class="input-group">
+                        <i data-lucide="mail" class="input-icon"></i>
+                        <input type="email" id="email" placeholder=" " required autocomplete="email">
+                        <label for="email">Email Address</label>
+                        <div class="status-indicator"></div>
+                        <span id="emailError" class="error-msg"></span>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="input-group">
+                        <i data-lucide="lock" class="input-icon"></i>
+                        <input type="password" id="password" placeholder=" " required autocomplete="new-password">
+                        <label for="password">Password</label>
+                        <div class="status-indicator"></div>
+                        <!-- Password Strength Indicator -->
+                        <div class="password-strength-bar" id="strengthBar"></div>
+                        <span id="passwordError" class="error-msg"></span>
+                    </div>
+
+                    <!-- Confirm Password Field -->
+                    <div class="input-group">
+                        <i data-lucide="shield-check" class="input-icon"></i>
+                        <input type="password" id="confirmPassword" placeholder=" " required autocomplete="new-password">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <div class="status-indicator"></div>
+                        <span id="confirmError" class="error-msg"></span>
+                    </div>
+
+                    <!-- Mobile Number Field -->
+                    <div class="input-group">
+                        <i data-lucide="phone" class="input-icon"></i>
+                        <input type="tel" id="mobile" placeholder=" " required autocomplete="tel">
+                        <label for="mobile">Mobile Number</label>
+                        <div class="status-indicator"></div>
+                        <span id="mobileError" class="error-msg"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="btn-text">Register Now</span>
+                        <div class="btn-loader" id="btnLoader"></div>
+                    </button>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Celebration Success Modal -->
+    <div id="successModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="success-icon-wrapper">
+                <svg class="checkmark-svg" viewBox="0 0 52 52">
+                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+            </div>
+            <h3>Registration Successful!</h3>
+            <p>Welcome to Aura. Your account has been verified and created successfully.</p>
+            <button id="closeModalBtn" class="modal-btn">Get Started</button>
+        </div>
+    </div>
+
+    <!-- Lucide Icons CDN script -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Custom validation script -->
+    <script src="script.js"></script>
+</body>
+</html>

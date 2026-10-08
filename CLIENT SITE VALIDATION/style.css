@@ -1,0 +1,684 @@
+/* ==========================================
+   Design System & Variable Declarations
+   ========================================== */
+:root {
+    --bg-dark: #07080d;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --card-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+    
+    --text-primary: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --text-muted: #6b7280;
+    
+    --primary-gradient: linear-gradient(135deg, #6366f1, #d946ef);
+    --success-color: #10b981;
+    --error-color: #f43f5e;
+    --warning-color: #fbbf24;
+    
+    --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ==========================================
+   Reset & Base Styles
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+    line-height: 1.5;
+}
+
+/* ==========================================
+   Ambient Background Animation
+   ========================================== */
+.ambient-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.28;
+    mix-blend-mode: screen;
+    animation: floatBlob 20s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+    top: -10%;
+    left: -10%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, #6366f1 0%, transparent 70%);
+    animation-duration: 25s;
+}
+
+.blob-2 {
+    bottom: -15%;
+    right: -10%;
+    width: 55vw;
+    height: 55vw;
+    background: radial-gradient(circle, #d946ef 0%, transparent 70%);
+    animation-duration: 20s;
+    animation-delay: -5s;
+}
+
+.blob-3 {
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45vw;
+    height: 45vw;
+    background: radial-gradient(circle, #ffb424 0%, transparent 75%);
+    animation-duration: 30s;
+    animation-delay: -10s;
+}
+
+@keyframes floatBlob {
+    0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    100% {
+        transform: translate(8%, 10%) scale(1.15) rotate(180deg);
+    }
+}
+
+/* ==========================================
+   Layout Wrapper
+   ========================================== */
+.app-wrapper {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1050px;
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-container {
+    width: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-radius: 24px;
+    box-shadow: var(--card-shadow);
+    display: grid;
+    grid-template-columns: 1.1fr 1.2fr;
+    overflow: hidden;
+    animation: fadeInCard 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeInCard {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================
+   Left Panel: Inspirational Section
+   ========================================== */
+.info-panel {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(217, 70, 239, 0.03) 100%);
+    border-right: 1px solid var(--card-border);
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle graphic overlay inside info panel */
+.info-panel::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.info-header .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    width: 28px;
+    height: 28px;
+    color: #a5b4fc;
+    filter: drop-shadow(0 0 8px rgba(165, 180, 252, 0.6));
+    animation: logoGlow 3s infinite alternate;
+}
+
+@keyframes logoGlow {
+    from { filter: drop-shadow(0 0 4px rgba(165, 180, 252, 0.4)); }
+    to { filter: drop-shadow(0 0 12px rgba(165, 180, 252, 0.8)); }
+}
+
+.info-header .logo span {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: linear-gradient(to right, #fff, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.info-content {
+    margin: 60px 0;
+}
+
+.info-content h1 {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 24px;
+    letter-spacing: -1px;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #a5b4fc 0%, #f472b6 50%, #fbbf24 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 8s infinite alternate ease-in-out;
+    background-size: 200% auto;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+.info-content .quote {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    font-style: italic;
+    position: relative;
+}
+
+.info-content .quote-author {
+    font-size: 14px;
+    font-weight: 500;
+    color: #a5b4fc;
+    letter-spacing: 0.5px;
+}
+
+.info-footer .footer-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* ==========================================
+   Right Panel: Registration Form Section
+   ========================================== */
+.form-panel {
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-header {
+    margin-bottom: 32px;
+}
+
+.form-header h2 {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+}
+
+.form-header .subtitle {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ==========================================
+   Floating Labels & Interactive Form Inputs
+   ========================================== */
+.input-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Icons inside input */
+.input-icon {
+    position: absolute;
+    left: 16px;
+    top: 17px;
+    width: 18px;
+    height: 18px;
+    color: var(--text-muted);
+    transition: var(--transition-smooth);
+    pointer-events: none;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 16px 48px 16px 46px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--text-primary);
+    outline: none;
+    transition: var(--transition-smooth);
+}
+
+/* Inputs hover & focus states */
+.input-group input:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.input-group input:focus {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: #6366f1;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
+
+/* Floating Label styling */
+.input-group label {
+    position: absolute;
+    left: 46px;
+    top: 17px;
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 400;
+    pointer-events: none;
+    transition: var(--transition-smooth);
+    transform-origin: left top;
+}
+
+/* Float label logic when input is focused or filled */
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label {
+    transform: translateY(-26px) scale(0.85);
+    color: #a5b4fc;
+    font-weight: 500;
+    left: 12px;
+    padding: 0 4px;
+}
+
+/* Shift icons colors on focus */
+.input-group input:focus ~ .input-icon {
+    color: #a5b4fc;
+}
+
+/* Input validation visual status classes */
+.input-group.success input {
+    border-color: var(--success-color);
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+.input-group.success .input-icon {
+    color: var(--success-color);
+}
+
+.input-group.error input {
+    border-color: var(--error-color);
+    box-shadow: 0 0 0 4px rgba(244, 63, 94, 0.1);
+    animation: shakeInput 0.4s ease-in-out;
+}
+
+.input-group.error .input-icon {
+    color: var(--error-color);
+}
+
+@keyframes shakeInput {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-6px); }
+    40%, 80% { transform: translateX(6px); }
+}
+
+/* Error messages styling */
+.error-msg {
+    color: var(--error-color);
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 4px;
+    padding-left: 12px;
+    display: block;
+    opacity: 0;
+    transform: translateY(-8px);
+    height: 0;
+    overflow: hidden;
+    transition: var(--transition-bounce);
+}
+
+.input-group.error .error-msg {
+    opacity: 1;
+    transform: translateY(0);
+    height: auto;
+    margin-top: 6px;
+}
+
+/* Password Strength Indicator */
+.password-strength-bar {
+    position: absolute;
+    bottom: -2px;
+    left: 12px;
+    width: calc(100% - 24px);
+    height: 3px;
+    background: transparent;
+    border-radius: 2px;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.password-strength-bar::after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 0;
+    background: transparent;
+    transition: width 0.4s ease-in-out, background-color 0.3s ease;
+}
+
+.password-strength-bar.weak::after {
+    width: 33%;
+    background-color: var(--error-color);
+}
+
+.password-strength-bar.medium::after {
+    width: 66%;
+    background-color: var(--warning-color);
+}
+
+.password-strength-bar.strong::after {
+    width: 100%;
+    background-color: var(--success-color);
+}
+
+/* ==========================================
+   Premium Submit Button
+   ========================================== */
+.submit-btn {
+    position: relative;
+    background: var(--primary-gradient);
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    color: white;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 8px 30px rgba(99, 102, 241, 0.3);
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(217, 70, 239, 0.4);
+    opacity: 0.95;
+}
+
+.submit-btn:active {
+    transform: translateY(1px);
+}
+
+.btn-text {
+    transition: var(--transition-smooth);
+}
+
+/* Submitting state loader styling */
+.btn-loader {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: var(--transition-smooth);
+    animation: spin 0.8s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.submit-btn.loading {
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.submit-btn.loading .btn-text {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.submit-btn.loading .btn-loader {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ==========================================
+   Celebration Success Modal
+   ========================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(4, 5, 8, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 40px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    box-shadow: var(--card-shadow);
+    transform: scale(0.8) translateY(30px);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-overlay.active .modal-card {
+    transform: scale(1) translateY(0);
+}
+
+.success-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(16, 185, 129, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px auto;
+    position: relative;
+}
+
+/* Icon Checkmark SVG Animations */
+.checkmark-svg {
+    width: 50px;
+    height: 50px;
+    stroke: var(--success-color);
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.checkmark-circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke: var(--success-color);
+    stroke-width: 2;
+    fill: none;
+    animation: drawCircle 0.6s ease forwards;
+}
+
+.checkmark-check {
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: drawCheck 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.6s forwards;
+}
+
+@keyframes drawCircle {
+    to { stroke-dashoffset: 0; }
+}
+
+@keyframes drawCheck {
+    to { stroke-dashoffset: 0; }
+}
+
+.modal-card h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.modal-card p {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.modal-btn {
+    background: white;
+    color: black;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 28px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    width: 100%;
+}
+
+.modal-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+}
+
+.modal-btn:active {
+    transform: translateY(0);
+}
+
+/* ==========================================
+   Responsive Configurations
+   ========================================== */
+@media (max-width: 900px) {
+    .card-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .info-panel {
+        padding: 40px;
+        border-right: none;
+        border-bottom: 1px solid var(--card-border);
+    }
+    
+    .info-content {
+        margin: 40px 0;
+    }
+    
+    .info-content h1 {
+        font-size: 34px;
+    }
+    
+    .form-panel {
+        padding: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-wrapper {
+        padding: 16px;
+    }
+    
+    .info-panel {
+        padding: 32px 24px;
+    }
+    
+    .info-content h1 {
+        font-size: 28px;
+    }
+    
+    .form-panel {
+        padding: 32px 24px;
+    }
+    
+    .input-group label {
+        font-size: 14px;
+    }
+}
